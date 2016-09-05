@@ -1,0 +1,22 @@
+{
+  "name": "hw1-wachiranan-MyPokedex",
+  "version": "1.0.0",
+  "description": "web for Display list of pokemon that I have catched",
+  "main": "index.html",
+  "scripts": {
+    "start": "node_modules/http-server/bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrontTechsTU/hw1-example.git"
+  },
+  "author": "Wachiranan Unmee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrontTechsTU/hw1-example/issues"
+  },
+  "homepage": "https://github.com/FrontTechsTU/hw1-example#readme",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
