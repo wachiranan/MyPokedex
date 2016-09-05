@@ -4,7 +4,7 @@
   "description": "web for Display list of pokemon that I have catched",
   "main": "index.html",
   "scripts": {
-    "start": "node_modules/http-server/bin/http-server"
+    "start": "node_modules/.bin/http-server"
   },
   "repository": {
     "type": "git",
