@@ -1,13 +1,37 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const AddForm = () => {
-      return (
-        <form><h3>
-            <input type="text" placeholder="Enter Pokemon name" />
-            <button type="submit" >Add</button></h3>
-        </form>
-    )
+function onAddClick(event){
+    event.preventDefault()
+    console.log('onAddClick',event)
+}
+
+class AddForm extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            query : ''
+        }
+    }
+    onAddClick(event){
+        event.preventDefault()
+        console.log('this.onAddClick', this.state.query)
+    }
+    onQueryChange(event){
+        const query = event.target.value
+        console.log('this.onQueryChange',query)
+        this.setState({
+            query : query
+        })
+    }
+    render(){
+        return(
+            <form><h3>
+            <input type="text" value={this.state.query} onChange= {this.onQueryChange.bind(this)} placeholder="Enter Pokemon name" />
+            <button onClick={this.onAddClick.bind(this)} >Add</button></h3>
+            </form>
+        )
+    }
 }
 
 const Header =(props) => (
@@ -17,16 +41,17 @@ const Header =(props) => (
     </header>
 )
 
-const Items = (props) => {
+const PokemonList = (props) => {
     console.log(props.pokemons)
     return (
         <table>
-            {props.pokemons.map(item => (
-                     <tr>
-                         <td><img src={item[0]} width="300" height="200"/></td>
-                         <td><p><li>{item[1]} </li>
-                                <li>{item[2]} </li>
-                                <li>{item[3]} </li></p></td>
+            {props.pokemons.map((item,i) => (
+                     <tr key={i}>
+                         <td><img src={item.pic} width="300" height="200"/></td>
+                         <td><p><li>Name : {item.name} </li>
+                                <li>Type : {item.type} </li>
+                                <li>Skill : {item.skill} </li></p>
+                        </td>
                      </tr>
                 )
             )}
@@ -38,7 +63,7 @@ const Items = (props) => {
 const Content = (props) => (
     <section>
         <h2>{props.description}</h2>
-        <Items pokemons={props.pokemons}/>
+        <PokemonList pokemons={props.pokemons}/>
     </section>
 )
 
@@ -46,14 +71,37 @@ const App = () => {
     const appTitle = 'My Pokedex'
     const description = 'Pokemon that catched'
     const pokemons = [
-        ["image/1722.jpg","Name : Snorlax" ,"Type : Normal","Skill : Lick"],
-        ["image/001.png","Name : Bulbasaur" ,"Type : Grass , Poison","Skill : Vine Whip"],
-        ["image/007Squirtle.png","Name : Squirtle" ,"Type : Water","Skill : Aqua Jet"],
-        ["image/Charmander.png","Name : Charmander" ,"Type : Fire","Skill : Ember"],
-        ["image/gyarados.png","Name : Gyarados" ,"Type : Water","Skill : Hydro Pump"],
-        ["image/king.png","Name : Magikarp" ,"Type : Water","Skill : Splash"],
-        ["image/kireu.png","Name : Dragonite" ,"Type : Dragon","SSkill : Dragon Pulse"],
-        ["image/pika.png","Name : Pikachu" ,"Type : Electric","Skill : Thunder"]
+        
+             {pic : "image/1722.jpg",name:"Snorlax" ,type:"Normal",skill:"Lick"}
+              ,
+       
+           {pic : "image/001.png",name:"Bulbasaur" ,type:"Grass , Poison",skill:"Vine Whip"}
+
+        ,
+        
+             {pic:"image/007Squirtle.png",name:"Squirtle" ,type : "Water",skill : "Aqua Jet"}
+      
+       ,
+       
+           {pic:"image/Charmander.png",name : "Charmander" ,type : "Fire",skill : "Ember"}
+      
+        ,
+       
+             {pic:"image/gyarados.png",name : "Gyarados" ,type : "Water",skill : "Hydro Pump"}
+        
+       ,
+      
+            {pic:"image/king.png",name : "Magikarp" ,type : "Water",skill : "Splash"}
+       
+       ,
+       
+           {pic:"image/kireu.png",name : "Dragonite" ,type : "Dragon",skill : "Dragon Pulse"}
+       
+        ,
+            {pic:"image/pika.png",name : "Pikachu" ,type : "Electric",skill : "Thunder"}
+        
+        
+      
     ]
     return (
     <section>
